@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-postgres
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: prod
+  POSTGRES_USER: admin
+  PGDATA: /srv/postgresql/data
+  # TODO - move to secrets
+  POSTGRES_PASSWORD: Mjuns6NVBpkLxHGV
+  POSTGRES_HOST_AUTH_METHOD: password

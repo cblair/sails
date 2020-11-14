@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sails
+  labels:
+    apps: sails
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sails
+  template:
+    metadata:
+      labels:
+        app: sails
+    spec:
+      containers:
+      - name: sails
+        image: cblair/sails:latest
+        ports:
+        - containerPort: 1337
+        env:
+          - name: NODE_ENV
+            value: "production"
+        command: ["sails", "lift"]

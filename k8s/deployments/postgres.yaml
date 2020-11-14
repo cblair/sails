@@ -1,0 +1,49 @@
+# Service definition
+# This config mainly sets up k8s DNS for us so the container is routable.
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-postgres
+  # namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      name: postgres
+      port: 5432
+      targetPort: 5432
+  selector:
+    app: postgres
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13.0
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: configmap-postgres
+          volumeMounts:
+            - mountPath: /srv/postgresql
+              name: postgres-volume
+      volumes:
+        - name: postgres-volume
+          gcePersistentDisk:
+            pdName: postgres-disk
+            fsType: ext4

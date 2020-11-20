@@ -97,8 +97,27 @@ Note the external IP:
 
     bash ./k8s/deploy.sh
 
-# References
+## References
 * k8s deployments - https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 * https://cloud.google.com/kubernetes-engine/docs/quickstart
 * https://hub.docker.com/_/postgres
 * https://severalnines.com/database-blog/using-kubernetes-deploy-postgresql
+
+# REST
+To enable REST routes for models on a sails app, updated `config/blueprint.js` with:
+
+    rest: true,
+
+# Database
+
+## References
+* https://sailsjs.com/documentation/concepts/models-and-orm/model-settings - Database migrations
+
+# UI
+
+## webpack
+* HtmlWebpackPlugin - takes index.html and injects script tags for `bundle` and `vendor`
+* ExtractTextPlugin - webpack gets `src/` styles in `bundle`, ExtractTextPlugin takes style from that JS and makes another stylesheet
+
+## References
+* https://medium.com/@sepineda/creating-a-new-project-with-sails-js-webpack-and-react-49cafc50c4ec

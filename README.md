@@ -4,7 +4,7 @@ This is my [Sails v1](https://sailsjs.com) application that I'm basing project o
 * had quick additions of migration for new data models
 * these migration also produced basic CRUD UI (a la Rails)
 * would give me only the API side if desired (no UI)
-* worked locally the same way as it does in production:
+* works locally the same way as it does in production:
     * deployments to docker locally are quick and are the same as production
     * deployments to a local minikube are quick and are the same as production
     * deployments to a remote kubernetes production service are quick
@@ -39,7 +39,7 @@ This project's boilerplate is based on an expanded seed app provided by the [Sai
 # Development
 ## Docker
 
-    docker-compose up
+    docker-compose up #--build to always rebuild the container
     # In the sail container
     sails lift
 
@@ -115,9 +115,10 @@ To enable REST routes for models on a sails app, updated `config/blueprint.js` w
 
 # UI
 
-## webpack
-* HtmlWebpackPlugin - takes index.html and injects script tags for `bundle` and `vendor`
-* ExtractTextPlugin - webpack gets `src/` styles in `bundle`, ExtractTextPlugin takes style from that JS and makes another stylesheet
+## Prerequisites
+
+    npm install --save-dev webpack webpack-dev-server webpack-cli
+
 
 ## References
-* https://medium.com/@sepineda/creating-a-new-project-with-sails-js-webpack-and-react-49cafc50c4ec
+* https://www.robinwieruch.de/webpack-babel-setup-tutorial

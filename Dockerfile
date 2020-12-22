@@ -5,5 +5,6 @@ WORKDIR /usr/local/app
 COPY . /usr/local/app/
 
 RUN npm install -g sails
+RUN npm install
 
-CMD sails lift
+CMD npm run start

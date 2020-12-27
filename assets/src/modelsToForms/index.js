@@ -1,32 +1,12 @@
 import React from "react";
 import { Link, Route, Router, useHistory } from "react-router-dom";
 import * as log from 'loglevel';
+import { omit } from "lodash";
 
 // Import all models with babel-plugin-wildcard.
 import * as models from '../../../api/models';
 
-import { useForm } from "react-hook-form";
-
-function Field ({name, field}) {
-  return <div>{name}</div>
-}
-
-function ModelToForm({modelName, fields}) {
-  // history = useHistory();
-
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => alert(data);
-
-  return (
-    <>
-      <h1>{modelName}</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        
-        {Object.keys(fields).map((fieldName) => <Field name={fieldName} field={fields[fieldName]} />)}
-      </form>
-    </>
-  );
-}
+import ModelToForm from "../modelToForm.js";
 
 export default class ModelsToForms {
   constructor() {
@@ -39,19 +19,9 @@ export default class ModelsToForms {
 
     // Components
     this.forms = {};
-    this.getModelList().forEach(({modelKey, model}) => this.forms[modelKey] = <ModelToForm modelName={modelKey} fields={model} />);
-  }
+    this.getModelList().forEach(({modelKey, model}) => this.forms[modelKey] = <ModelToForm modelName={modelKey} fields={omit(model, "path")} />);
 
-  getFormFields(modelKey, model) {
-    return Object.keys(model).map(fieldName => this.getFormField(fieldName, model[fieldName]));
-  }
-
-  getFormField(fieldName, field) {
-    switch (field.type) {
-      case "string":
-        
-    }
-    return null;
+    // console.log("TS24", {reactProf})
   }
 
   getModelList() {

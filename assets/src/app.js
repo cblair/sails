@@ -5,7 +5,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import ModelsToForms from "./modelsToForms";
+import ModelsToForms from "./modelsToForms/index.js";
 
 const modelsToForms = new ModelsToForms();
 

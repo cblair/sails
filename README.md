@@ -39,9 +39,7 @@ This project's boilerplate is based on an expanded seed app provided by the [Sai
 # Development
 ## Docker
 
-    docker-compose up #--build to always rebuild the container
-    # In the sail container
-    sails lift
+     bash ./dev/run.sh # --build to always rebuild the container
 
 # k8s
 ## GCE Setup
@@ -53,9 +51,10 @@ For GCE, there's three major concepts you need to know and configure:
 To login:
 * gcloud auth login
 
-When using *gcloud*, each has to be specified, but defaults can be set:
-* gcloud config set project foo
-* gcloud config set compute/zone foo
+When using *gcloud*, `project` and `compute/zone` have to be specified, unless defaults are set:
+* `gcloud config set project <project id>`
+* `gcloud config set compute/zone <zone>`
+** i.e. `gcloud config set compute/zone us-west1-a`
 
 To create a cluster:
 * gcloud container clusters create cluster-name --num-nodes=1
@@ -83,7 +82,7 @@ Configuration for a GCE disk and our persistent volume:
     kubectl create -f ./k8s/persistent-volume/postgres.yaml
 
 3). LoadBalancer
-Make the pod is routable via a LoadBalancing service:
+Make the pod is routable via a LoadBalancing service. Must do after the Deployments section below.
 
     kubectl expose deployment sails --type LoadBalancer --port 80 --target-port 1337
 

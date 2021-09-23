@@ -1,7 +1,7 @@
 {
   "name": "test-project",
   "private": true,
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
@@ -42,7 +42,7 @@
   },
   "scripts": {
     "//start": "npm-run-all start:api start:ui",
-    "start": "echo NEWWWWWW; npm-run-all --parallel start:api:dev",
+    "start": "echo NEWWWWWW; npm-run-all --parallel start:api",
     "start:api": "NODE_ENV=production node app.js",
     "start:api:dev": "NODE_ENV=development node app.js",
     "start:ui": "webpack serve --config ./webpack-config.js --host 0.0.0.0",

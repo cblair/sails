@@ -1,5 +1,11 @@
 import React from "react";
-import { Link, Route, Router, useHistory } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import * as log from 'loglevel';
 import { omit } from "lodash";
 
@@ -17,11 +23,9 @@ export default class ModelsToForms {
     });
     log.debug("Loaded sails models: ", {models}, "as", this.models);
 
-    // Components
+    // All Forms Components
     this.forms = {};
-    this.getModelList().forEach(({modelKey, model}) => this.forms[modelKey] = <ModelToForm modelName={modelKey} fields={omit(model, "path")} />);
-
-    // console.log("TS24", {reactProf})
+    this.getModelList().forEach(({modelKey, model}) => this.forms[modelKey] = <ModelToForm modelName={modelKey} fields={omit(model, "path")} />);    
   }
 
   getModelList() {
@@ -38,3 +42,23 @@ export default class ModelsToForms {
     return this.getModelList().map(({modelKey, model: {path}}) => <Route path={`/${path}`}>{this.forms[modelKey]}</Route>);
   }
 }
+
+export const FormRouter = () => {
+  // TODO - do this only once
+  const modelsToForms = new ModelsToForms();
+
+  return <Router>
+    <div>
+      <nav>
+        <ul>
+          <ul>
+            {modelsToForms.getLinks().map(link => <li>{link}</li>)}
+          </ul>
+        </ul>
+      </nav>
+      <Switch>
+        {modelsToForms.getRoutes()}
+      </Switch>
+    </div>
+  </Router>;
+};

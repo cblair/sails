@@ -4,10 +4,8 @@ import * as log from 'loglevel';
 
 import App from "./app.js";
 
-// TODO - set of of env/etc
+// TODO - set off of env/etc
 log.setLevel('DEBUG');
-
-const title = 'React with Webpack and Babel';
 
 ReactDOM.render(
   <App />,

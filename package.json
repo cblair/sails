@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "@babel/preset-react": "^7.12.10",
     "@sailshq/connect-redis": "^3.2.1",
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
@@ -24,6 +25,10 @@
     "sails-postgresql": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
     "eslint": "5.16.0",
     "grunt": "1.0.4",
     "htmlhint": "0.11.0",

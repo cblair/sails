@@ -1,7 +1,7 @@
 {
   "name": "test-project",
   "private": true,
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {

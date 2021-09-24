@@ -82,11 +82,6 @@ Configuration for a GCE disk and our persistent volume:
 
     kubectl create -f ./k8s/persistent-volume/postgres.yaml
 
-3). LoadBalancer
-Make the pod is routable via a LoadBalancing service:
-
-    kubectl expose deployment sails --type LoadBalancer --port 80 --target-port 1337
-
 Note the external IP:
 
     $ kubectl get service sails

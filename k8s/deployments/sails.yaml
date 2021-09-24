@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sails
   labels:
-    apps: sails
+    app: sails
 spec:
   replicas: 1
   selector:
@@ -16,10 +16,11 @@ spec:
     spec:
       containers:
       - name: sails
-        image: cblair/sails:latest
+        image: cblair/sails:$IMAGE_VERSION
+        imagePullPolicy: Always
         ports:
-        - containerPort: 1337
+          - containerPort: 1337
         env:
           - name: NODE_ENV
             value: "production"
-        command: ["sails", "lift"]
+        command: ["npm", "run", "start"]

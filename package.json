@@ -1,7 +1,7 @@
 {
   "name": "test-project",
   "private": true,
-  "version": "0.1.39",
+  "version": "0.1.82",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
@@ -28,9 +28,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
-    "babel-loader": "^8.2.2",
-    "babel-preset-env": "^1.7.0",
     "eslint": "5.16.0",
     "grunt": "1.0.4",
     "htmlhint": "0.11.0",
@@ -43,7 +40,7 @@
   },
   "scripts": {
     "//start": "npm-run-all start:api start:ui",
-    "start": "npm-run-all --parallel start:api",
+    "start": "echo \"Running $IMAGE_NAME@$IMAGE_VERSION\" && npm-run-all --parallel start:api",
     "start:dev": "npm-run-all --parallel start:api:dev",
     "start:api": "NODE_ENV=production node app.js",
     "start:api:dev": "NODE_ENV=development node app.js",
@@ -53,7 +50,9 @@
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look so good.' && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/**/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/**/**/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/**/**/**/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/**/**/**/**/*.ejs && ./node_modules/htmlhint/bin/htmlhint -c ./.htmlhintrc views/**/**/**/**/**/**/*.ejs && echo '✔  So do your .ejs files.' && ./node_modules/lesshint/bin/lesshint assets/styles/ --max-warnings=0 && echo '✔  Your .less files look good, too.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
-    "deploy": "./k8s/deploy.sh"
+    "deploy": "./k8s/deploy.sh",
+    "db:migrate:prod": "NODE_ENV=production ",
+    "patchAndDeploy": "npm version patch --no-git-tag-version ; ./k8s/deploy.sh"
   },
   "main": "app.js",
   "repository": {

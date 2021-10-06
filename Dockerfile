@@ -11,4 +11,9 @@ RUN npm ci
 #TODO - @babel/preset-react in .babelrc is what is causing the babel / @babel/core 6/7 version error. Sort that out
 # with the web stuff
 
-CMD npm run start:dev
+# Run this to start things automatically on dev startup,
+# although code changes require a whole docker rebuild
+# CMD npm run start:dev
+# This and our dev/run.sh instead allows you to root in and run sails, and 
+# restart for code changes without a docker rebuild.
+CMD sleep 10000000

@@ -88,14 +88,17 @@ Note the external IP:
     sails   LoadBalancer   10.95.251.109   35.233.252.224   80:31246/TCP   11m
 
 ## Deployments
+The name version labels are taken from the package.json, so be sure those are what you want, and the version 
+HAS BEEN bumped. You'll probably get an old image deployed from docker if you don't.
 
-    bash ./k8s/deploy.sh
+On the first run, you'll need to [set up a static IP](https://cloud.google.com/kubernetes-engine/docs/tutorials/configuring-domain-name-static-ip) with a matching name as `sails-ip` to match the k8s Ingress name from ./k8s.
 
 ## References
 * k8s deployments - https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 * https://cloud.google.com/kubernetes-engine/docs/quickstart
 * https://hub.docker.com/_/postgres
 * https://severalnines.com/database-blog/using-kubernetes-deploy-postgresql
+* https://cloud.google.com/kubernetes-engine/docs/tutorials/configuring-domain-name-static-ip
 
 # REST
 To enable REST routes for models on a sails app, updated `config/blueprint.js` with:

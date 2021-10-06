@@ -4,23 +4,30 @@ metadata:
   name: sails
   labels:
     app: sails
+    tier: web
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: sails
+      tier: web
   template:
     metadata:
       labels:
         app: sails
+        tier: web
     spec:
       containers:
       - name: sails
         image: cblair/sails:$IMAGE_VERSION
         imagePullPolicy: Always
         ports:
-          - containerPort: 1337
+          - containerPort: 80
         env:
           - name: NODE_ENV
             value: "production"
+          - name: IMAGE_NAME
+            value: $IMAGE_NAME
+          - name: IMAGE_VERSION
+            value: $IMAGE_VERSION
         command: ["npm", "run", "start"]

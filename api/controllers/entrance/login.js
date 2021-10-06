@@ -108,6 +108,8 @@ and exposed as \`req.me\`.)`
     // (This will be persisted when the response is sent.)
     this.req.session.userId = userRecord.id;
 
+    sails.log.warn({setCookie: this.res.get('Set-Cookie')});
+    // TODO - this is how we could force set-cookie, but don't know the values: this.res.cookie();
   }
 
 };
